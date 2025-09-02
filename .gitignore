@@ -137,3 +137,45 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+postgres-data/
+zitadel-data/
+
+# Generated tokens and API keys
+*.pat
+*.pem
+*.key
+admin-api.pat
+
+# Environment files (NEVER commit secrets!)
+.env
+.env.local
+.env.production
+.env.staging
+.env.test
