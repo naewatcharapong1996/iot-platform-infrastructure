@@ -33,11 +33,12 @@ A Docker-based Zitadel authentication service for the Factory Platform IoT manag
 
 ## 🔧 Services
 
-| Service             | URL                              | Purpose            |
-| ------------------- | -------------------------------- | ------------------ |
-| **Zitadel Console** | http://localhost:8080/ui/console | Admin interface    |
-| **Zitadel API**     | http://localhost:8080            | Authentication API |
-| **PostgreSQL**      | localhost:5432                   | Database           |
+| Service             | URL                              | Purpose                  |
+| ------------------- | -------------------------------- | ------------------------ |
+| **Zitadel Console** | http://localhost:8080/ui/console | Admin interface          |
+| **Zitadel Login**   | http://localhost:8080/ui/login   | Built-in login interface |
+| **Zitadel API**     | http://localhost:8080            | Authentication API       |
+| **PostgreSQL**      | localhost:5432                   | Database                 |
 
 ## 📋 Verification
 
@@ -61,6 +62,7 @@ The setup uses the following key configuration:
 - **Organization**: Factory Platform
 - **External Domain**: localhost
 - **Database**: PostgreSQL 17 Alpine
+- **Login Version**: v1 (classic built-in UI)
 - **TLS**: Disabled for local development
 
 ## 🔑 Default Credentials

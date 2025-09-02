@@ -4,25 +4,29 @@ services:
     image: ghcr.io/zitadel/zitadel:latest
     command: start-from-init --masterkey "${ZITADEL_MASTERKEY}"
     environment:
-      # External Domain Configuration
+      # External domain configuration
       ZITADEL_EXTERNALDOMAIN: ${ZITADEL_EXTERNAL_DOMAIN}
 
-      # TLS Configuration (disabled for local development)
+      # TLS configuration (disabled for local development)
       ZITADEL_EXTERNALSECURE: ${ZITADEL_EXTERNAL_SECURE}
       ZITADEL_TLS_ENABLED: false
 
       # Database connection settings
       ZITADEL_DATABASE_POSTGRES_HOST: db
       ZITADEL_DATABASE_POSTGRES_PORT: 5432
+      # The database is created by the init job if it does not exist
       ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
-      # Admin user must already exist in the database
+      # The admin user must already exist in the database
       ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: ${POSTGRES_USER}
       ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: ${POSTGRES_PASSWORD}
       ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
-      # Zitadel user is created by init job if it doesn't exist
+      # The zitadel user is created by the init job if it doesn't exist
       ZITADEL_DATABASE_POSTGRES_USER_USERNAME: ${ZITADEL_DB_USER}
       ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: ${ZITADEL_DB_PASSWORD}
       ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
+
+      # Use Login v1 (classic login interface)
+      ZITADEL_DEFAULTINSTANCE_FEATURES_LOGINV2_REQUIRED: false
 
       # Custom admin user configuration
       ZITADEL_FIRSTINSTANCE_ORG_NAME: ${ORG_NAME}
@@ -40,7 +44,7 @@ services:
       retries: 5
       start_period: 10s
     ports:
-      - "${ZITADEL_EXTERNAL_PORT}:8080"
+      - ${ZITADEL_EXTERNAL_PORT}:8080
     networks:
       - zitadel
     depends_on:
@@ -68,7 +72,7 @@ services:
     networks:
       - zitadel
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - "data:/var/lib/postgresql/data:rw"
 
